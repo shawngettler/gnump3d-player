@@ -52,105 +52,105 @@ var buildListing = function(root, e) {
     }
 };
 
-var createFolderElement = function(e, name, urls) {
-    var f = document.createElement("div");
-    f.classList.add("music");
-    f.classList.add("music-folder");
-    e.appendChild(f);
+var createFolderElement = function(parentElem, name, urls) {
+    var folderElem = document.createElement("div");
+    folderElem.classList.add("music");
+    folderElem.classList.add("music-folder");
+    parentElem.appendChild(folderElem);
 
-    var b = document.createElement("button");
-    b.classList.add("music-button");
-    b.title="Expand";
-    f.appendChild(b);
+    var expandBtnElem = document.createElement("button");
+    expandBtnElem.classList.add("music-button");
+    expandBtnElem.title="Expand";
+    folderElem.appendChild(expandBtnElem);
 
-    var c = document.createElement("i");
-    c.classList.add("material-icons");
-    c.innerText = "arrow_right";
-    b.appendChild(c);
+    var expandIconElem = document.createElement("i");
+    expandIconElem.classList.add("material-icons");
+    expandIconElem.innerText = "arrow_right";
+    expandBtnElem.appendChild(expandIconElem);
 
-    createListingElement(f, name, urls);
+    createListingElement(folderElem, name, urls);
 
-    var g = document.createElement("div");
-    g.classList.add("music-folder-contents");
-    g.style.display = "none";
-    e.appendChild(g);
+    var contentsElem = document.createElement("div");
+    contentsElem.classList.add("music-folder-contents");
+    contentsElem.style.display = "none";
+    parentElem.appendChild(contentsElem);
 
-    f.addEventListener("click", function() {
-        if(g.style.display === "block") {
-            g.style.display = "none";
-            b.title = "Expand";
-            c.innerText = "arrow_right"
+    folderElem.addEventListener("click", function() {
+        if(contentsElem.style.display === "block") {
+            expandBtnElem.title = "Expand";
+            expandIconElem.innerText = "arrow_right";
+            contentsElem.style.display = "none";
         } else {
-            g.style.display = "block";
-            b.title = "Collapse";
-            c.innerText = "arrow_drop_down";
+            expandBtnElem.title = "Collapse";
+            expandIconElem.innerText = "arrow_drop_down";
+            contentsElem.style.display = "block";
         }
     });
 
-    return g;
+    return contentsElem;
 };
 
-var createFileElement = function(e, name, urls) {
-    var f = document.createElement("div");
-    f.classList.add("music");
-    f.classList.add("music-file");
-    e.appendChild(f);
+var createFileElement = function(parentElem, name, urls) {
+    var fileElem = document.createElement("div");
+    fileElem.classList.add("music");
+    fileElem.classList.add("music-file");
+    parentElem.appendChild(fileElem);
 
-    createListingElement(f, name, urls);
+    createListingElement(fileElem, name, urls);
 };
 
-var createListingElement = function(e, name, urls) {
-    var s = document.createElement("span");
-    s.classList.add("music-title");
-    s.appendChild(document.createTextNode(window.decodeURIComponent(name)));
-    e.appendChild(s);
+var createListingElement = function(parentElem, name, urls) {
+    var titleElem = document.createElement("span");
+    titleElem.classList.add("music-title");
+    titleElem.appendChild(document.createTextNode(window.decodeURIComponent(name)));
+    parentElem.appendChild(titleElem);
 
     if(urls.length > 1) {
-        var t = document.createElement("span");
-        t.classList.add("music-description");
-        t.appendChild(document.createTextNode(urls.length+" songs"));
-        e.appendChild(t);
+        var descElem = document.createElement("span");
+        descElem.classList.add("music-description");
+        descElem.appendChild(document.createTextNode(urls.length+" songs"));
+        parentElem.appendChild(descElem);
     }
 
-    var b = document.createElement("button");
-    b.classList.add("music-button");
-    b.style.setProperty("visibility", "hidden");
-    b.title="Play";
-    e.appendChild(b);
+    var playBtnElem = document.createElement("button");
+    playBtnElem.classList.add("music-button");
+    playBtnElem.style.setProperty("visibility", "hidden");
+    playBtnElem.title="Play";
+    parentElem.appendChild(playBtnElem);
 
-    var c = document.createElement("i");
-    c.classList.add("material-icons");
-    c.innerText = "play_arrow";
-    b.appendChild(c);
+    var playIconElem = document.createElement("i");
+    playIconElem.classList.add("material-icons");
+    playIconElem.innerText = "play_arrow";
+    playBtnElem.appendChild(playIconElem);
 
-    b.addEventListener("click", function(evt) {
+    playBtnElem.addEventListener("click", function(evt) {
         evt.stopPropagation();
         playFiles(urls);
     });
 
-    var g = document.createElement("button");
-    g.classList.add("music-button");
-    g.style.setProperty("visibility", "hidden");
-    g.title="Enqueue";
-    e.appendChild(g);
+    var enqueueBtnElem = document.createElement("button");
+    enqueueBtnElem.classList.add("music-button");
+    enqueueBtnElem.style.setProperty("visibility", "hidden");
+    enqueueBtnElem.title="Enqueue";
+    parentElem.appendChild(enqueueBtnElem);
 
-    var h = document.createElement("i");
-    h.classList.add("material-icons");
-    h.innerText = "playlist_add";
-    g.appendChild(h);
+    var enqueueIconElem = document.createElement("i");
+    enqueueIconElem.classList.add("material-icons");
+    enqueueIconElem.innerText = "playlist_add";
+    enqueueBtnElem.appendChild(enqueueIconElem);
 
-    g.addEventListener("click", function(evt) {
+    enqueueBtnElem.addEventListener("click", function(evt) {
         evt.stopPropagation();
         enqueueFiles(urls);
     });
 
-    e.addEventListener("mouseover", function() {
-        b.style.setProperty("visibility", "visible");
-        g.style.setProperty("visibility", "visible");
+    parentElem.addEventListener("mouseover", function() {
+        playBtnElem.style.setProperty("visibility", "visible");
+        enqueueBtnElem.style.setProperty("visibility", "visible");
     });
-    e.addEventListener("mouseout", function() {
-        b.style.setProperty("visibility", "hidden");
-        g.style.setProperty("visibility", "hidden");
+    parentElem.addEventListener("mouseout", function() {
+        playBtnElem.style.setProperty("visibility", "hidden");
+        enqueueBtnElem.style.setProperty("visibility", "hidden");
     });
 };
 
