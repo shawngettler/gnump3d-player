@@ -1,0 +1,139 @@
+/**
+ * index.css'
+ *
+ * Style sheet.
+ */
+
+
+
+/* body */
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    font-family: "Roboto", sans-serif;
+    background-color: #ffffff;
+}
+
+
+
+/* header */
+#header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+    padding: 8px 32px;
+
+    color: #ffffff;
+    background-color: #2e7d32;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+#header-title {
+    flex-grow: 1;
+
+    margin: 0;
+    padding: 0;
+
+    font-size: 24px;
+}
+
+
+
+/* library */
+#content {
+    box-sizing: border-box;
+    margin: 32px;
+    margin-top: 96px;
+    padding: 0;
+}
+
+#library-title {
+    margin: 16px 0;
+    padding: 0;
+
+    font-size: 18px;
+}
+
+#library {
+    width: 960px;
+    overflow: hidden;
+
+    margin: 0;
+    padding: 0;
+
+    border-top: 1px solid rgba(191, 191, 191, 0.5);
+}
+
+.music {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    font-size: 14px;
+    background-color: #ffffff;
+    border-bottom: 1px solid rgba(191, 191, 191, 0.5);
+
+    cursor: default;
+}
+.music:hover {
+    background-color: #e8f5e9;
+}
+
+.music-folder {
+    margin-left: -140px;
+    padding-left: 140px;
+
+    font-weight: bold;
+}
+
+.music-folder-contents {
+    padding-left: 14px;
+}
+
+.music-file {
+    margin-left: -140px;
+    padding-left: 168px;
+}
+
+.music-title {
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+}
+
+.music-button {
+    flex: none;
+    margin: 2px;
+    padding: 0;
+
+    color: #000000;
+    background: none;
+    opacity: 0.5;
+    line-height: 0;
+    border: none;
+    outline: none;
+}
+.music-button:hover {
+    opacity: 1.0;
+}
+
+.music-description {
+    flex: none;
+    margin: 0 8px;
+
+    font-size: 12px;
+    opacity: 0.5;
+}
