@@ -40,7 +40,7 @@ var createControlsElement = function() {
     playBtnElem.appendChild(playIconElem);
 
     playBtnElem.addEventListener("click", function() {
-        if(player.paused) {
+        if(player.paused && player.src != "") {
             player.play();
         } else {
             player.pause();
@@ -139,8 +139,8 @@ var playNextFile = function() {
         player.src = playlist.shift();
         player.load();
         player.play();
+        document.getElementById("controls-name").innerText = window.decodeURIComponent(player.src.split(/\//g).pop());
     }
-    document.getElementById("controls-name").innerText = window.decodeURIComponent(player.src.split(/\//g).pop());
 };
 
 
