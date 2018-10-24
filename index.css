@@ -1,5 +1,5 @@
 /**
- * index.css'
+ * index.css
  *
  * Style sheet.
  */
@@ -143,6 +143,11 @@ body {
     padding: 0;
 
     border-top: 1px solid rgba(0,0,0,0.25);
+}
+@media (max-width: 1024px) {
+  #library {
+    width: 100%;
+  }
 }
 
 .music {
