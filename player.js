@@ -79,6 +79,13 @@ var createControlsElement = function() {
     nameElem.appendChild(document.createTextNode("\u200b")); // empty
     trackElem.appendChild(nameElem);
 
+    (function scrollName() {
+        if(nameElem.scrollWidth > nameElem.clientWidth) {
+            nameElem.innerText = nameElem.innerText.slice(1)+nameElem.innerText.slice(0,1);
+        }
+        setTimeout(scrollName, 250);
+    }());
+
     var progressElem = document.createElement("div");
     progressElem.id = "controls-progress";
     trackElem.appendChild(progressElem);
@@ -139,7 +146,7 @@ var playNextFile = function() {
         player.src = playlist.shift();
         player.load();
         player.play();
-        document.getElementById("controls-name").innerText = window.decodeURIComponent(player.src.split(/\//g).pop());
+        document.getElementById("controls-name").innerText = window.decodeURIComponent(player.src.split(/\//g).pop()).replace(/ /g, "\u00a0")+"\u00a0\u00a0\u00a0\u00a0\u00a0";
     }
 };
 
